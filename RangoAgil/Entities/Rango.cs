@@ -8,7 +8,7 @@ public class Rango {
     [Required]
     [MaxLength(200)]
     public required string Nome { get; set; }
-    public ICollection<Ingrediente> Ingredientes { get; set; } = []; //tras todos os ingredientes que tem esse ingrediente. mesmo que colocar new List<Ingrediente>();
+    public ICollection<Ingrediente> Ingredientes { get; set; } = []; //tras todos os ingredientes que tem esse rango. mesmo que colocar new List<Ingrediente>();
     public Rango() {
            
     }
