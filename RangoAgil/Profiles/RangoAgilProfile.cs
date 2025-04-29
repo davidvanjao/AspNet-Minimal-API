@@ -6,6 +6,8 @@ namespace RangoAgil.API.Profiles;
 public class RangoAgilProfile : Profile {
     public RangoAgilProfile() {
         CreateMap<Rango, RangoDTO>().ReverseMap(); //cria o mapa entre Rango e RangoDTO
+        CreateMap<Rango, RangoParaCriacaoDTO>().ReverseMap();
+        CreateMap<Rango, RangoParaAtualizacaoDTO>().ReverseMap();
 
         CreateMap<Ingrediente, IngredienteDTO>()//cria o mapa entre Ingrediente e IngredienteDTO
             .ForMember(
