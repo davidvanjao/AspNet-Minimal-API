@@ -14,14 +14,17 @@ public static class RangosHandlers {
     public static async Task<Results<NoContent, Ok<IEnumerable<RangoDTO>>>> GetRangosAsync
         (RangoDbContext rangoDbContext,
         IMapper mapper, //faz o mapeamento entre as entidades e os DTOs
+        ILogger<RangoDTO> logger,
         [FromQuery(Name = "name")] string? rangoNome) {
 
         var rangosEntity = await rangoDbContext.Rangos
                                     .Where(x => rangoNome == null || x.Nome.ToLower().Contains(rangoNome.ToLower())) //se for null, traz todos os rangos, se nao, traz apenas os que tem o nome especificado. Converte texto para minusculo.
                                     .ToListAsync();
         if (rangosEntity.Count <= 0 || rangosEntity == null) {
+            logger.LogInformation("Nenhum rango encontrado com o nome: {RangoNome}", rangoNome);
             return TypedResults.NoContent();
         } else {
+            logger.LogInformation("Rangos encontrados: {RangosCount}", rangosEntity.Count);
             return TypedResults.Ok(mapper.Map<IEnumerable<RangoDTO>>(rangosEntity));
         }
 
