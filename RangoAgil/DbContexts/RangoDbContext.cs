@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RangoAgil.API.Entities;
 
 namespace RangoAgil.API.DbContexts;
-public class RangoDbContext(DbContextOptions<RangoDbContext> options) : DbContext(options) { //novo modelo de declarar 
+public class RangoDbContext(DbContextOptions<RangoDbContext> options) : IdentityDbContext(options) { //novo modelo de declarar 
     public DbSet<Rango> Rangos { get; set; } = null!; //indica que a propriedade nao vai ser nula.
     public DbSet<Ingrediente> Ingredientes { get; set; } = null!;
 
